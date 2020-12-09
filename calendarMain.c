@@ -7,7 +7,6 @@
 #define max_name 30
 #define max_desc 50
 
-
 static GtkWidget *monthNum;
 static GtkWidget *dayNum;
 static GtkWidget *desc;
@@ -18,15 +17,11 @@ static GtkWidget *dayInfo;
 static GtkWidget *descInfo;
 static GtkWidget *deleteInfo;
 static GtkWidget *recoverCode;
-
 static GtkWidget *result;
 int input;
 
-char* itoa(int,char b[]);
-int randomNum(void);
-void trashDisplayHelper(void);
-
 typedef enum {work=0, life, home, holiday, other} eventTypes;
+
 struct events {
     eventTypes types;
     int day;
@@ -47,6 +42,22 @@ struct trash {
 
 void executed(void);
 char say[] = "added";
+
+
+void normalAdd(eventTypes event, int dayNum, int monthNum, char descrip[], int codeNum);
+void adding(GtkWidget *actionAdd, gpointer data);
+char* itoa(int i, char b[]);
+int randomNum(void);
+void deleting(GtkWidget *actionDelete, gpointer data);
+void recoveringTrash (GtkWidget *recoverTrash, gpointer data);
+void saving (GtkWidget *save, gpointer data);
+void load(void);
+void displayHelperTrash(void);
+void displayHelperTrash(void);
+void displaying(GtkWidget *actiondisplaying, gpointer data);
+void displayingTrash(GtkWidget *actionDisplayingTrash, gpointer data);
+void popping(GtkToggleButton *tglButton, gpointer data);
+
 
 void normalAdd(eventTypes event,
                int dayNum,
@@ -310,14 +321,6 @@ void deleting(GtkWidget *actionDelete,
     free(temp);
 }
 
-void deletingTrash(GtkWidget *deleteTrash,
-                   gpointer data) {
-    struct trash* pp=head;
-    while(pp){
-        free(pp);
-        pp=pp->next;
-    }
-}
 void recoveringTrash (GtkWidget *recoverTrash,
                       gpointer data) {
     
@@ -535,7 +538,7 @@ void displayHelperTrash() {
     
 }
 
-void displaying (GtkWidget *actiondisplaying,
+void displaying(GtkWidget *actiondisplaying,
                  gpointer data) {
    
     displayHelper();
@@ -546,7 +549,7 @@ void displaying (GtkWidget *actiondisplaying,
 }
 
 
-void displayingTrash (GtkWidget *actionDisplayingTrash,
+void displayingTrash(GtkWidget *actionDisplayingTrash,
                       gpointer data) {
     displayHelperTrash();
     snprintf(finalTrash, sizeof(finalTrash), "%s", finalTrash);
@@ -554,7 +557,7 @@ void displayingTrash (GtkWidget *actionDisplayingTrash,
     
 }
 
-void popping (GtkToggleButton *tglButton,
+void popping(GtkToggleButton *tglButton,
               gpointer data) {
     GtkWidget *popover = data;
     g_return_if_fail(GTK_IS_POPOVER(popover));
@@ -575,7 +578,7 @@ int main (int argc,
           char *argv[]) {
     GtkApplication *app = gtk_application_new ("com.example.GtkApplication", G_APPLICATION_FLAGS_NONE);
    
-    GtkWidget *window, *grid, *actionAdd, *actionDelete, *actionsave, *actionrecoverTrash, *actiondeleteTrash, *actiondisplay, *popover, *toggleButton, *actionDisplayingTrash;
+    GtkWidget *window, *grid, *actionAdd, *actionDelete, *actionsave, *actionrecoverTrash, *actiondisplay, *popover, *toggleButton, *actionDisplayingTrash;
     
     load();
     
@@ -660,3 +663,5 @@ int main (int argc,
     
     return 0;
 }
+
+
