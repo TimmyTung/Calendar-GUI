@@ -573,8 +573,7 @@ void popping (GtkToggleButton *tglButton,
 
 int main (int argc,
           char *argv[]) {
-    GtkApplication *app = gtk_application_new ("com.example.GtkApplication",
-    G_APPLICATION_FLAGS_NONE);
+    GtkApplication *app = gtk_application_new ("com.example.GtkApplication", G_APPLICATION_FLAGS_NONE);
    
     GtkWidget *window, *grid, *actionAdd, *actionDelete, *actionsave, *actionrecoverTrash, *actiondeleteTrash, *actiondisplay, *popover, *toggleButton, *actionDisplayingTrash;
     
