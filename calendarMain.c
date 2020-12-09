@@ -48,7 +48,11 @@ struct trash {
 void executed(void);
 char say[] = "added";
 
-void normalAdd(eventTypes event, int dayNum, int monthNum, char descrip[],int codeNum){
+void normalAdd(eventTypes event,
+               int dayNum,
+               int monthNum,
+               char descrip[],
+               int codeNum) {
     struct events* temp = list;
     struct events* p;
     
@@ -113,7 +117,7 @@ void normalAdd(eventTypes event, int dayNum, int monthNum, char descrip[],int co
 }
 
 void adding(GtkWidget *actionAdd,
-            gpointer data){
+            gpointer data) {
     
     struct events* temp = list;
     struct events* p;
@@ -216,7 +220,8 @@ void adding(GtkWidget *actionAdd,
     gtk_label_set_text(GTK_LABEL(result), buffer);
 }
 
-char* itoa(int i, char b[]){
+char* itoa(int i,
+           char b[]) {
     char const digit[] = "0123456789";
     char* p = b;
     if(i<0){
@@ -236,7 +241,7 @@ char* itoa(int i, char b[]){
     return b;
 }
 
-int randomNum(){
+int randomNum() {
     
     struct events* pp = list;
     struct trash* p = head;
@@ -263,7 +268,7 @@ int randomNum(){
 }
 
 void deleting(GtkWidget *actionDelete,
-              gpointer data){
+              gpointer data) {
     
     struct trash* pp = (struct trash*) malloc(sizeof(struct trash));
     int codeD = atoi((char*)gtk_entry_get_text(GTK_ENTRY(codeDeleted)));
@@ -343,7 +348,7 @@ void recoveringTrash (GtkWidget *recoverTrash,
 }
 
 void saving (GtkWidget *save,
-           gpointer data){
+             gpointer data) {
     
     char *fileName = "new_cal_list.txt";
     int eventValue;
@@ -422,7 +427,7 @@ void load() {
 
 char final[500];
 
-void displayHelper(){
+void displayHelper() {
     struct events* p = list;
     strcpy(final,"");
     while(p){
@@ -477,7 +482,7 @@ void displayHelper(){
 
 char finalTrash[500];
 
-void displayHelperTrash(){
+void displayHelperTrash() {
     struct trash* p = head;
     strcpy(finalTrash,"");
     while(p){
@@ -566,7 +571,8 @@ void popping (GtkToggleButton *tglButton,
 }
 
 
-int main (int argc, char *argv[]) {
+int main (int argc,
+          char *argv[]) {
     GtkApplication *app = gtk_application_new ("com.example.GtkApplication",
     G_APPLICATION_FLAGS_NONE);
    
@@ -655,6 +661,3 @@ int main (int argc, char *argv[]) {
     
     return 0;
 }
-
-
-
